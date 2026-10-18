@@ -6,14 +6,15 @@ export default function Home() {
   return (
     <section
       id="hero"
-      className="relative pt-[75px] min-h-screen w-full px-4 md:px-28 flex justify-center items-center overflow-hidden">
+      className="relative pt-[75px] min-h-screen w-full px-4 md:px-28 flex justify-center items-center overflow-hidden"
+    >
       <video
         className="absolute inset-0 min-h-full w-full -z-10 object-cover"
-        poster="/assets/bgvidCutcomp2.gif"
         autoPlay
         muted
         playsInline
-        loop>
+        loop
+      >
         <source src="/assets/bgvidcut1.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
@@ -35,7 +36,8 @@ export default function Home() {
           <h1
             className="md:text-7xl text-4xl font-bold font-heading py-2 leading-tight
                        text-white
-                       [text-shadow:0_0_28px_rgba(255,209,31,0.45),0_2px_12px_rgba(0,0,0,0.9)]">
+                       [text-shadow:0_0_28px_rgba(255,209,31,0.45),0_2px_12px_rgba(0,0,0,0.9)]"
+          >
             Chemical Engineering Society
           </h1>
 
@@ -45,7 +47,8 @@ export default function Home() {
           <p
             className="md:text-3xl text-xl font-body font-normal text-white mt-6 leading-relaxed
                        [text-shadow:0_2px_10px_rgba(0,0,0,0.9)]
-                       animate-fade-in">
+                       animate-fade-in"
+          >
             Fuel your passion for Chemical Engineering –{" "}
             <span className="text-accent-300 font-medium">
               where curiosity sparks progress
