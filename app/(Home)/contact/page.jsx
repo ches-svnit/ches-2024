@@ -40,7 +40,7 @@ function Contact() {
     <>
       <section className="  pt-16 min-h-screen w-full px-4 md:px-28 ">
         <div data-aos="fade-left" className="max-w-3xl mx-auto">
-          <div className="bg-gradient-to-tl from-[#451452] to-[#26062d] bg-opacity-30 backdrop-filter mt-6 backdrop-blur-lg p-6 rounded-lg shadow-lg">
+          <div className="bg-gradient-to-tl from-secondary-800 to-secondary-950 border border-primary-200/10 backdrop-filter mt-6 backdrop-blur-lg p-6 rounded-lg shadow-lg">
             <h1 className="text-3xl md:text-4xl font-bold text-center mb-4 text-secondary-200 font-heading mt-4">
               Contact Us
             </h1>
@@ -55,7 +55,7 @@ function Contact() {
                   type="text"
                   name="name"
                   placeholder="Name"
-                  className="w-full p-4 bg-text-100 border border-gray-300 placeholder:text-text-400 text-text-700 rounded-md focus:outline-none focus:border-primary-600"
+                  className="w-full p-4 bg-text-100 border border-primary-200/30 placeholder:text-text-500 text-text-800 rounded-md focus:outline-none focus:border-accent-400 focus:ring-1 focus:ring-accent-400"
                   {...register("name", { required: true })}
                   required
                 />
@@ -65,7 +65,7 @@ function Contact() {
                   type="email"
                   name="email"
                   placeholder="Email"
-                  className="w-full p-4 bg-text-100 border border-gray-300 placeholder:text-text-400 text-text-700 rounded-md focus:outline-none focus:border-primary-600"
+                  className="w-full p-4 bg-text-100 border border-primary-200/30 placeholder:text-text-500 text-text-800 rounded-md focus:outline-none focus:border-accent-400 focus:ring-1 focus:ring-accent-400"
                   required
                   {...register("email", { required: true })}
                 />
@@ -75,7 +75,7 @@ function Contact() {
                   name="message"
                   placeholder="Message"
                   rows="4"
-                  className="w-full p-4 bg-text-100 border border-gray-300 placeholder:text-text-400 text-text-700 rounded-md focus:outline-none focus:border-primary-600 resize-none"
+                  className="w-full p-4 bg-text-100 border border-primary-200/30 placeholder:text-text-500 text-text-800 rounded-md focus:outline-none focus:border-accent-400 focus:ring-1 focus:ring-accent-400 resize-none"
                   {...register("message", { required: true })}
                   required></textarea>
               </div>
@@ -83,7 +83,7 @@ function Contact() {
                 <button
                   aria-label="send"
                   type="submit"
-                  className="w-full py-3 bg-primary-600 hover:bg-primary-700 text-white font-bold rounded-md transition duration-300"
+                  className="w-full py-3 bg-accent-400 hover:bg-accent-300 text-background-950 font-bold rounded-md transition duration-300 disabled:opacity-60"
                   disabled={loading}>
                   {loading ? "Sending..." : "Send"}
                 </button>

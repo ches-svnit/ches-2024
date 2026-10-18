@@ -10,7 +10,7 @@ const About = async () => {
       </h2>
       <div
         data-aos="fade-right"
-        className="my-8 p-4 md:p-8 bg-gradient-to-tl from-[#451452] to-[#26062d] bg-opacity-30 backdrop-filter mt-6 backdrop-blur-lg rounded-lg shadow-lg hover:shadow-lg hover:shadow-text-500/60 ">
+        className="my-8 p-4 md:p-8 bg-gradient-to-tl from-secondary-800 to-secondary-950 border border-primary-200/10 backdrop-filter mt-6 backdrop-blur-lg rounded-lg shadow-lg hover:shadow-lg hover:shadow-accent-400/20 transition-shadow">
         <AboutCarousel about={about} />
       </div>
     </section>

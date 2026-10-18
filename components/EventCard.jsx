@@ -28,7 +28,7 @@ export function EventCard({
         data-aos-delay={index * 10}
         data-aos="fade-right"
         onClick={handleOpen}
-        className="bg-gradient-to-tl from-[#461254] to-[#26062d] bg-opacity-30 backdrop-filter rounded-xl cursor-pointer p-6 sm:px-6 hover:shadow-lg hover:shadow-text-500/60 w-full">
+        className="bg-gradient-to-tl from-secondary-800 to-secondary-950 border border-primary-200/10 backdrop-filter rounded-xl cursor-pointer p-6 sm:px-6 hover:shadow-lg hover:shadow-accent-400/20 transition-shadow w-full">
         <Image
           height={200}
           width={300}
@@ -42,7 +42,7 @@ export function EventCard({
         open={open}
         handler={handleOpen}
         size="lg"
-        className="bg-gradient-to-tl from-[#451452] to-[#26062d] bg-opacity-30 backdrop-filter  rounded-lg shadow-lg  h-[90dvh] md:h-auto overflow-y-scroll md:overflow-hidden"
+        className="bg-gradient-to-tl from-secondary-800 to-secondary-950 border border-primary-200/10 backdrop-filter rounded-lg shadow-lg h-[90dvh] md:h-auto overflow-y-scroll md:overflow-hidden"
         animate={{
           mount: { scale: 1, y: 0 },
           unmount: { scale: 0.9, y: -100 },
@@ -67,7 +67,7 @@ export function EventCard({
           <Button
             aria-label="close"
             variant="text"
-            color="red"
+            color="white"
             onClick={() => handleOpen(null)}
             className="mr-2">
             <span>Close</span>
@@ -75,7 +75,7 @@ export function EventCard({
           <Link
             href={link}
             target="_blank"
-            className=" bg-accent-600 hover:bg-accent-500  text-white p-2 rounded-md">
+            className="bg-accent-400 hover:bg-accent-300 text-background-950 font-medium p-2 rounded-md transition-colors">
             Know More
           </Link>
         </DialogFooter>

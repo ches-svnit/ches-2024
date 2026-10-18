@@ -19,6 +19,10 @@ const buttonReg = {
   text: "Full Committee List",
 };
 
+// Shared card style (navy gradient, faint border, yellow hover glow)
+const cardClass =
+  "bg-gradient-to-tl from-secondary-800 to-secondary-950 border border-primary-200/10 backdrop-filter backdrop-blur-lg shadow-lg p-4 rounded-xl hover:shadow-lg hover:shadow-accent-400/20 transition-shadow sm:w-[100%] flex items-center justify-between gap-2";
+
 const page = async () => {
   const committees = await getCommittee();
   // const studentAdvisors = await getAdvisor();
@@ -64,7 +68,7 @@ const page = async () => {
           <div
             data-aos="fade-left"
             key={faculty.position}
-            className="bg-gradient-to-tl from-[#451452] to-[#26062d] bg-opacity-30 backdrop-filter  backdrop-blur-lg  shadow-lg p-4 rounded-xl  hover:shadow-lg hover:shadow-text-500/60  sm:w-[100%] flex items-center justify-between  gap-2 ">
+            className={cardClass}>
             <div>
               <div className="text-base sm:text-xl font-bold font-heading text-text-200 ">
                 {faculty.position}
@@ -100,7 +104,7 @@ const page = async () => {
             data-aos="fade-left"
             data-aos-delay={index * 50}
             key={StudentHead.position}
-            className="bg-gradient-to-tl from-[#451452] to-[#26062d] bg-opacity-30 backdrop-filter  backdrop-blur-lg  shadow-lg p-4 rounded-xl  hover:shadow-lg hover:shadow-text-500/60  sm:w-[100%] flex items-center justify-between  gap-2 ">
+            className={cardClass}>
             <div>
               <div className="text-base sm:text-xl font-bold font-heading text-text-200 ">
                 {StudentHead.position}
@@ -136,7 +140,7 @@ const page = async () => {
             data-aos="fade-left"
             data-aos-delay={index * 50}
             key={studentAdvisors.advisoryDepartment}
-            className="bg-gradient-to-tl from-[#451452] to-[#26062d] bg-opacity-30 backdrop-filter  backdrop-blur-lg  shadow-lg p-4 rounded-xl  hover:shadow-lg hover:shadow-text-500/60  sm:w-[100%] flex items-center justify-between  gap-2 ">
+            className={cardClass}>
             <div>
               <div className="text-base sm:text-xl font-bold font-heading text-text-200 ">
                 {studentAdvisors.advisoryDepartment}
@@ -161,7 +165,7 @@ const page = async () => {
             />
           </div>
         ))}
-      </div> 
+      </div>
 
       <h1 className="md:text-3xl text-2xl font-bold font-heading text-secondary-200 mt-4 decoration-4  decoration-accent-500 underline underline-offset-8  ">
         Committee Heads
@@ -172,7 +176,7 @@ const page = async () => {
             data-aos="fade-right"
             data-aos-delay={index * 50}
             key={committee.head}
-            className="bg-gradient-to-tl from-[#451452] to-[#26062d] bg-opacity-30 backdrop-filter  backdrop-blur-lg  shadow-lg p-4 rounded-xl hover:shadow-lg hover:shadow-text-500/60  sm:w-[100%] flex items-center justify-between  gap-2 ">
+            className={cardClass}>
             <div>
               <div className="text-base sm:text-xl font-bold font-heading text-text-200 ">
                 {committee.committee}
@@ -203,7 +207,7 @@ const page = async () => {
         target="_blank"
         rel="noreferrer"
         aria-label="core committee"
-        className="bg-accent-600 text-white py-2 px-4 rounded-md shadow-md hover:bg-secondary-500 focus:outline-none focus:ring-2 focus:ring-accent-400 focus:ring-opacity-50 transition-colors duration-200">
+        className="inline-block bg-accent-400 text-background-950 font-medium py-2 px-4 rounded-md shadow-md hover:bg-accent-300 focus:outline-none focus:ring-2 focus:ring-accent-300 focus:ring-opacity-50 transition-colors duration-200">
         {buttonReg.text}
       </Link>
       <h1 className="md:text-3xl text-2xl font-bold font-heading text-secondary-200 mt-10 decoration-4  decoration-accent-500 underline underline-offset-8  ">
@@ -213,7 +217,7 @@ const page = async () => {
         {Developers.map((Developers, index) => (
           <div
             key={Developers.position}
-            className="bg-gradient-to-tl from-[#451452] to-[#26062d] bg-opacity-30 backdrop-filter  backdrop-blur-lg  shadow-lg p-4 rounded-xl  hover:shadow-lg hover:shadow-text-500/60  sm:w-[100%] flex items-center justify-between  gap-2 ">
+            className={cardClass}>
             <div>
               <div className="text-base sm:text-xl font-bold font-heading text-text-200 ">
                 {Developers.position}
