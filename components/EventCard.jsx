@@ -28,7 +28,8 @@ export function EventCard({
         data-aos-delay={index * 10}
         data-aos="fade-right"
         onClick={handleOpen}
-        className="bg-gradient-to-tl from-secondary-800 to-secondary-950 border border-primary-200/10 backdrop-filter rounded-xl cursor-pointer p-6 sm:px-6 hover:shadow-lg hover:shadow-accent-400/20 transition-shadow w-full">
+        className="bg-gradient-to-tl from-secondary-800 to-secondary-950 border border-primary-200/10 backdrop-filter rounded-xl cursor-pointer p-6 sm:px-6 hover:shadow-lg hover:shadow-accent-400/20 transition-shadow w-full"
+      >
         <Image
           height={200}
           width={300}
@@ -46,7 +47,8 @@ export function EventCard({
         animate={{
           mount: { scale: 1, y: 0 },
           unmount: { scale: 0.9, y: -100 },
-        }}>
+        }}
+      >
         <div className="p-4 md:p-8 ">
           <div>
             <Image
@@ -69,13 +71,15 @@ export function EventCard({
             variant="text"
             color="white"
             onClick={() => handleOpen(null)}
-            className="mr-2">
+            className="mr-2"
+          >
             <span>Close</span>
           </Button>
           <Link
             href={link}
             target="_blank"
-            className="bg-accent-400 hover:bg-accent-300 text-background-950 font-medium p-2 rounded-md transition-colors">
+            className="bg-accent-400 hover:bg-accent-300 text-background-950 font-medium p-2 rounded-md transition-colors"
+          >
             Know More
           </Link>
         </DialogFooter>
