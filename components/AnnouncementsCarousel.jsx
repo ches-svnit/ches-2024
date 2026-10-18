@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { FaChevronLeft, FaChevronRight, FaPause, FaPlay } from "react-icons/fa";
 
-const AUTOPLAY_MS = 2000;
+const AUTOPLAY_MS = 4000;
 
 const controlBtn =
   "flex h-10 w-10 items-center justify-center rounded-full border border-primary-200/20 bg-secondary-800 text-accent-400 transition-colors hover:bg-secondary-700 hover:text-accent-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-400";
@@ -98,14 +98,14 @@ const AnnouncementsCarousel = ({ notifications }) => {
       onBlur={() => setHovered(false)}
     >
       {/* Header: title on the left, controls on the right */}
-      <div className="my-8 flex items-end justify-between gap-4">
+      <div className="my-8 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <h2 className="md:text-4xl text-3xl font-bold font-heading text-secondary-200 decoration-4 decoration-accent-500 underline underline-offset-8">
           Announcements
         </h2>
 
         <div className="flex items-center gap-2">
           <span
-            className="mr-2 hidden text-sm tabular-nums text-text-300 sm:block"
+            className="mr-auto text-sm tabular-nums text-text-300 sm:mr-2"
             aria-live="polite"
           >
             {index + 1} / {count}
