@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { FaChevronLeft, FaChevronRight, FaPause, FaPlay } from "react-icons/fa";
 
-const AUTOPLAY_MS = 4000;
+const AUTOPLAY_MS = 5000;
 
 const controlBtn =
   "flex h-10 w-10 items-center justify-center rounded-full border border-primary-200/20 bg-secondary-800 text-accent-400 transition-colors hover:bg-secondary-700 hover:text-accent-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-400";

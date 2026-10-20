@@ -111,6 +111,11 @@ import {
   navneet,
   Palak,
   Yatharth,
+  YatharthWebdHead,
+  Abhyanshu,
+  Vishesh,
+  Samarth,
+  Yash,
 } from "@/public/assets";
 
 export const NavLinks = [
@@ -141,7 +146,7 @@ export const NavLinks = [
   },
 ];
 
-export const Developers = [
+export const old_Developers = [
   {
     position: "Head",
     name: "Archit Kulshrestha",
@@ -221,6 +226,46 @@ export const Developers = [
     name: "Dolly Sharma",
     Linkedin: "https://www.linkedin.com/in/dolly-sharma-498b7038a",
     ImageUrl: dolly,
+  },
+];
+
+export const Developers = [
+  {
+    position: "Head",
+    name: "Yatharth Neel",
+    Linkedin: "https://www.linkedin.com/in/yatharth-neel-63706a332",
+    ImageUrl: YatharthWebdHead,
+  },
+  {
+    position: "Executive",
+    name: "Palak Singh",
+    Linkedin: "https://www.linkedin.com/in/palak-singh-a397b9369",
+    ImageUrl: Palak,
+  },
+  {
+    position: "Member",
+    name: "Abhyanshu Shah",
+    Linkedin: "https://www.linkedin.com/in/abhyanshu-shah-557267362",
+    ImageUrl: Abhyanshu,
+  },
+  {
+    position: "Member",
+    name: "Vishesh Maurya",
+    Linkedin: "https://www.linkedin.com/in/vishesh-kumar-maurya-359154445/",
+    ImageUrl: Vishesh,
+  },
+  {
+    position: "Member",
+    name: "Samarth Jain",
+    Linkedin: "https://www.linkedin.com/in/jainsamarth74/",
+    ImageUrl: Samarth,
+  },
+  {
+    position: "Member",
+    name: "Yash Vala",
+    Linkedin:
+      "https://www.linkedin.com/in/yash-vala-013855270?utm_source=share_via&utm_content=profile&utm_medium=member_android",
+    ImageUrl: Yash,
   },
 ];
 export const AluMillennium = {
@@ -797,7 +842,7 @@ export const Batch2425 = [
   {
     position: "K12 Outreach",
     name: "Vrushti Patel",
-    ImageUrl:  vrushti,
+    ImageUrl: vrushti,
     linkedin: "https://www.linkedin.com/in/vrushti-patel-a63819262",
   },
   {

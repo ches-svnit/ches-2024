@@ -5,6 +5,7 @@ import menu from "./menu.svg";
 import close from "./close.svg";
 import teamImg from "./teamImg2.jpg";
 import teamImg2526 from "./teamImg2526.jpg";
+import teamImg2627 from "./teamImg2627.jpg";
 import TeamImg2526yr from "./TeamImg2526yr.jpg";
 
 import SIPHON from "./SIPHON.webp";
@@ -120,6 +121,11 @@ import dolly from "./dolly.jpg";
 import navneet from "./navneet.jpg";
 import Palak from "./Palak.jpeg";
 import Yatharth from "./Yatharth.jpeg";
+import YatharthWebdHead from "./YatharthWebdHead.jpg";
+import Abhyanshu from "./Abhyanshu.jpg";
+import Vishesh from "./Vishesh.jpeg";
+import Samarth from "./Samarth.jpg";
+import Yash from "./yash.jpeg";
 
 export {
   EurekaHome,
@@ -162,6 +168,7 @@ export {
   Eurekalogo,
   teamImg,
   teamImg2526,
+  teamImg2627,
   TeamImg2526yr,
   SRC,
   EurekaNav,
@@ -239,5 +246,10 @@ export {
   dolly,
   navneet,
   Palak,
-  Yatharth, 
+  Yatharth,
+  YatharthWebdHead,
+  Abhyanshu,
+  Vishesh,
+  Samarth,
+  Yash,
 };

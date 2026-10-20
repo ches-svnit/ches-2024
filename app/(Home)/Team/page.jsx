@@ -4,7 +4,7 @@ import { Himanshu2425, Archit } from "@/public/assets";
 
 import Link from "next/link";
 import Image from "next/image";
-import { placeholder, teamImg2526 } from "@/public/assets";
+import { placeholder, teamImg2627 } from "@/public/assets";
 import Dropdown from "@/components/Dropdown";
 
 import { Developers } from "@/constants/index";
@@ -25,6 +25,10 @@ const cardClass =
 
 const page = async () => {
   const committees = await getCommittee();
+
+  const sortedCommittees = [...committees].sort((a, b) =>
+    a.committee.localeCompare(b.committee, undefined, { sensitivity: "base" }),
+  );
   // const studentAdvisors = await getAdvisor();
   const studentAdvisors = [
     {
@@ -55,7 +59,7 @@ const page = async () => {
 
       <div className="w-full mt-8 ">
         <Image
-          src={teamImg2526}
+          src={teamImg2627}
           alt="team"
           className="h-[20dvh] md:h-[55dvh] object-center rounded-md w-full  object-cover"
         />
@@ -68,7 +72,8 @@ const page = async () => {
           <div
             data-aos="fade-left"
             key={faculty.position}
-            className={cardClass}>
+            className={cardClass}
+          >
             <div>
               <div className="text-base sm:text-xl font-bold font-heading text-text-200 ">
                 {faculty.position}
@@ -80,7 +85,8 @@ const page = async () => {
                 href={`${faculty.linkedin}`}
                 target="_blank"
                 rel="noreferrer"
-                aria-label="linkedIn">
+                aria-label="linkedIn"
+              >
                 <FaLinkedin className="text-xl text-text-200 hover:text-accent-400" />
               </Link>
             </div>
@@ -104,7 +110,8 @@ const page = async () => {
             data-aos="fade-left"
             data-aos-delay={index * 50}
             key={StudentHead.position}
-            className={cardClass}>
+            className={cardClass}
+          >
             <div>
               <div className="text-base sm:text-xl font-bold font-heading text-text-200 ">
                 {StudentHead.position}
@@ -116,7 +123,8 @@ const page = async () => {
                 href={`${StudentHead.linkedin}`}
                 target="_blank"
                 rel="noreferrer"
-                aria-label="linkedIn">
+                aria-label="linkedIn"
+              >
                 <FaLinkedin className="text-xl text-text-200 hover:text-accent-400" />
               </Link>
             </div>
@@ -140,7 +148,8 @@ const page = async () => {
             data-aos="fade-left"
             data-aos-delay={index * 50}
             key={studentAdvisors.advisoryDepartment}
-            className={cardClass}>
+            className={cardClass}
+          >
             <div>
               <div className="text-base sm:text-xl font-bold font-heading text-text-200 ">
                 {studentAdvisors.advisoryDepartment}
@@ -152,12 +161,17 @@ const page = async () => {
                 href={`${studentAdvisors.linkedin}`}
                 target="_blank"
                 rel="noreferrer"
-                aria-label="linkedIn">
+                aria-label="linkedIn"
+              >
                 <FaLinkedin className="text-xl text-text-200 hover:text-accent-400" />
               </Link>
             </div>
             <Image
-              src={studentAdvisors.ImageUrl ? studentAdvisors.ImageUrl : placeholder}
+              src={
+                studentAdvisors.ImageUrl
+                  ? studentAdvisors.ImageUrl
+                  : placeholder
+              }
               alt="Img"
               height={100}
               width={100}
@@ -171,12 +185,13 @@ const page = async () => {
         Committee Heads
       </h1>
       <div className="my-8 grid grid-cols-1 lg:grid-cols-3 gap-5">
-        {committees.map((committee, index) => (
+        {sortedCommittees.map((committee, index) => (
           <div
             data-aos="fade-right"
             data-aos-delay={index * 50}
             key={committee.head}
-            className={cardClass}>
+            className={cardClass}
+          >
             <div>
               <div className="text-base sm:text-xl font-bold font-heading text-text-200 ">
                 {committee.committee}
@@ -188,7 +203,8 @@ const page = async () => {
                 href={`${committee.linkedin}`}
                 target="_blank"
                 rel="noreferrer"
-                aria-label="linkedIn">
+                aria-label="linkedIn"
+              >
                 <FaLinkedin className="text-xl text-text-200 hover:text-accent-400" />
               </Link>
             </div>
@@ -207,7 +223,8 @@ const page = async () => {
         target="_blank"
         rel="noreferrer"
         aria-label="core committee"
-        className="inline-block bg-accent-400 text-background-950 font-medium py-2 px-4 rounded-md shadow-md hover:bg-accent-300 focus:outline-none focus:ring-2 focus:ring-accent-300 focus:ring-opacity-50 transition-colors duration-200">
+        className="inline-block bg-accent-400 text-background-950 font-medium py-2 px-4 rounded-md shadow-md hover:bg-accent-300 focus:outline-none focus:ring-2 focus:ring-accent-300 focus:ring-opacity-50 transition-colors duration-200"
+      >
         {buttonReg.text}
       </Link>
       <h1 className="md:text-3xl text-2xl font-bold font-heading text-secondary-200 mt-10 decoration-4  decoration-accent-500 underline underline-offset-8  ">
@@ -215,9 +232,7 @@ const page = async () => {
       </h1>
       <div className=" my-8 grid grid-cols-1 lg:grid-cols-3 gap-5">
         {Developers.map((Developers, index) => (
-          <div
-            key={Developers.position}
-            className={cardClass}>
+          <div key={Developers.position} className={cardClass}>
             <div>
               <div className="text-base sm:text-xl font-bold font-heading text-text-200 ">
                 {Developers.position}
@@ -229,7 +244,8 @@ const page = async () => {
                 href={`${Developers.Linkedin}`}
                 target="_blank"
                 rel="noreferrer"
-                aria-label="linkedIn">
+                aria-label="linkedIn"
+              >
                 <FaLinkedin className="text-xl text-text-200 hover:text-accent-400" />
               </Link>
             </div>

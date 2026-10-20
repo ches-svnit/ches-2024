@@ -76,7 +76,7 @@ export async function getCommittee() {
 // *[_type == "StudentAdvisors"] | order(StudentAdvisors asc) {
 //   advisoryDepartment,
 //   advisor,
-//   "ImageUrl": image.asset->url, 
+//   "ImageUrl": image.asset->url,
 //   linkedin
 // }
 // `;
@@ -114,10 +114,10 @@ export async function getGallery() {
 }
 
 const NotificationsQuery = groq`
-*[_type == "notifications"] {
+*[_type == "notifications"] | order(_createdAt desc) {
   description,
-   "ImageUrl": image.asset->url, 
-   link
+  "ImageUrl": image.asset->url,
+  link
 }`;
 
 export async function getNotifications() {
