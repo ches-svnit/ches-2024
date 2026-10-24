@@ -154,12 +154,12 @@ function Contact() {
             <div role="status" aria-live="polite" className="min-h-[1.5rem]">
               {status === "sent" && (
                 <p className="text-sm text-accent-300">
-                  Message sent. We'll get back to you soon.
+                  Message sent. We&rsquo;ll get back to you soon.
                 </p>
               )}
               {status === "error" && (
                 <p className="text-sm text-red-300">
-                  Your message didn't send. Please try again, or email
+                  Your message didn&rsquo;t send. Please try again, or email
                   ches@svnit.ac.in.
                 </p>
               )}
