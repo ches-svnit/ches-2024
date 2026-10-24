@@ -8,3 +8,77 @@
   box-sizing: border-box;
   scroll-behavior: smooth;
 }
+
+/* ==========================================================
+   Motion system: paste into app/globals.css (after the
+   Tailwind directives and the aos.css import).
+
+   Principles
+   - One choreographed entrance (the hero), everything else
+     is a quiet, short scroll reveal that plays once.
+   - Reveals travel 24px, not AOS's default 100px.
+   - Hover/focus: 200ms for colour, 300ms for borders,
+     700ms for image zoom. Nothing bounces.
+   - Everything switches off for prefers-reduced-motion.
+   ========================================================== */
+
+:root {
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Page-load entrances (hero and navbar). Stagger with style={{ "--d": "200ms" }} */
+@keyframes motion-rise {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 20px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes motion-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.motion-rise {
+  animation: motion-rise 900ms var(--ease-out) both;
+  animation-delay: var(--d, 0ms);
+}
+
+.motion-fade {
+  animation: motion-fade 700ms ease-out both;
+  animation-delay: var(--d, 0ms);
+}
+
+/* Scroll reveals (AOS): shorter travel than the 100px default */
+html [data-aos="fade-up"] {
+  transform: translate3d(0, 24px, 0);
+}
+
+/* Smooth anchor scrolling for the navbar links */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Reduced motion: show everything immediately, no movement */
+@media (prefers-reduced-motion: reduce) {
+  .motion-rise,
+  .motion-fade {
+    animation: none;
+  }
+
+  [data-aos] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}

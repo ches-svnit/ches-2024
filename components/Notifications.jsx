@@ -9,10 +9,13 @@ export const Notifications = async () => {
 
   return (
     <section
+      id="Announcements"
       aria-label="Announcements"
-      className="mb-4 mt-12 w-full px-4 md:px-28"
+      className="w-full scroll-mt-20 px-4 py-8 md:px-28 md:py-12"
     >
-      <AnnouncementsCarousel notifications={notifications} />
+      <div data-aos="fade-up">
+        <AnnouncementsCarousel notifications={notifications} />
+      </div>
     </section>
   );
 };

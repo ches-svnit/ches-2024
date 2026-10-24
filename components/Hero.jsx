@@ -1,60 +1,62 @@
-import Image from "next/image";
-import { Hero } from "../public/assets/index.js";
 import Link from "next/link";
 
 export default function Home() {
   return (
     <section
       id="hero"
-      className="relative pt-[75px] min-h-screen w-full px-4 md:px-28 flex justify-center items-center overflow-hidden"
+      className="relative flex min-h-screen w-full items-center overflow-hidden px-4 pt-[75px] md:px-28"
     >
       <video
-        className="absolute inset-0 min-h-full w-full -z-10 object-cover"
+        aria-hidden="true"
+        className="absolute inset-0 -z-10 h-full w-full object-cover"
         autoPlay
         muted
         playsInline
         loop
       >
         <source src="/assets/bgvidcut1.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
       </video>
 
-      {/* Navy scrim: keeps the video's blue, calms the bright lights */}
+      {/* Navy scrim, heavier on the text side so the video stays visible on the right */}
       <div
         aria-hidden="true"
-        className="absolute inset-0 -z-[5] bg-[radial-gradient(ellipse_at_center,rgba(10,17,41,0.78)_0%,rgba(10,17,41,0.55)_45%,rgba(10,17,41,0.35)_100%)]"
+        className="absolute inset-0 -z-[5] bg-gradient-to-r from-background-950/90 via-background-950/60 to-background-950/20"
       />
-      {/* Bottom fade into the next section's navy background */}
+      {/* Bottom fade into the next section's background */}
       <div
         aria-hidden="true"
-        className="absolute inset-x-0 bottom-0 h-40 -z-[5] bg-gradient-to-t from-background-950 to-transparent"
+        className="absolute inset-x-0 bottom-0 -z-[5] h-40 bg-gradient-to-t from-background-950 to-transparent"
       />
 
-      <div className="relative z-10 flex items-center justify-center py-8">
-        <div className="text-center sm:w-[70%] w-full mt-[-50px]">
-          {/* White title with a warm yellow glow (replaces the green) */}
-          <h1
-            className="md:text-7xl text-4xl font-bold font-heading py-2 leading-tight
-                       text-white
-                       [text-shadow:0_0_28px_rgba(255,209,31,0.45),0_2px_12px_rgba(0,0,0,0.9)]"
-          >
-            Chemical Engineering Society
-          </h1>
+      {/* The one choreographed moment on the page: each piece rises in turn (delays via --d) */}
+      <div className="relative z-10 w-full max-w-4xl pb-12">
+        <h1 className="font-heading text-5xl font-bold leading-[0.95] tracking-tight text-white sm:text-6xl lg:text-8xl [text-shadow:0_2px_16px_rgba(0,0,0,0.5)]">
+          <span className="motion-rise block" style={{ "--d": "150ms" }}>
+            Chemical
+          </span>
+          <span className="motion-rise block" style={{ "--d": "270ms" }}>
+            Engineering
+          </span>
+          <span className="motion-rise block" style={{ "--d": "390ms" }}>
+            Society
+          </span>
+        </h1>
 
-          {/* Yellow-to-blue divider */}
-          <div className="mx-auto mt-4 h-1 w-24 rounded-full bg-gradient-to-r from-accent-400 via-accent-300 to-primary-400" />
+        <p
+          className="motion-rise mt-8 max-w-xl border-l-2 border-accent-400 pl-5 font-body text-lg leading-relaxed text-primary-100 md:text-2xl [text-shadow:0_1px_8px_rgba(0,0,0,0.6)]"
+          style={{ "--d": "620ms" }}
+        >
+          Fuel your passion for Chemical Engineering – where curiosity sparks
+          progress
+        </p>
 
-          <p
-            className="md:text-3xl text-xl font-body font-normal text-white mt-6 leading-relaxed
-                       [text-shadow:0_2px_10px_rgba(0,0,0,0.9)]
-                       animate-fade-in"
-          >
-            Fuel your passion for Chemical Engineering –{" "}
-            <span className="text-accent-300 font-medium">
-              where curiosity sparks progress
-            </span>
-          </p>
-        </div>
+        <Link
+          href="#About"
+          style={{ "--d": "800ms" }}
+          className="motion-rise mt-10 inline-flex items-center rounded-full bg-accent-400 px-7 py-3 text-base font-semibold text-background-950 transition-colors duration-200 hover:bg-accent-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-300"
+        >
+          Learn about us
+        </Link>
       </div>
     </section>
   );

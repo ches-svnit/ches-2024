@@ -1,18 +1,45 @@
 "use client";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import emailjs from "@emailjs/browser";
 import { useForm } from "react-hook-form";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import Link from "next/link";
+import SectionHeading from "@/components/SectionHeading";
+
+const fieldClass =
+  "w-full rounded-lg border border-primary-200/20 bg-secondary-950/60 px-4 py-3 text-text-100 placeholder:text-text-400 transition-colors duration-200 focus:border-accent-400 focus:outline-none focus:ring-1 focus:ring-accent-400 aria-[invalid=true]:border-red-400";
+
+const Field = ({ id, label, error, children }) => (
+  <div>
+    <label
+      htmlFor={id}
+      className="mb-2 block text-sm font-medium text-text-100"
+    >
+      {label}
+    </label>
+    {children}
+    {error && (
+      <p id={`${id}-error`} className="mt-1.5 text-sm text-red-300">
+        {error}
+      </p>
+    )}
+  </div>
+);
 
 function Contact() {
-  const [loading, setLoading] = useState(false);
+  // "idle" | "sending" | "sent" | "error"
+  const [status, setStatus] = useState("idle");
 
-  const { register, handleSubmit, reset } = useForm();
-  const onSubmit = (data) => {
-    setLoading(true);
-    emailjs
-      .send(
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = async (data) => {
+    setStatus("sending");
+    try {
+      await emailjs.send(
         "service_ipyj85c",
         "template_pzaln2s",
         {
@@ -22,77 +49,125 @@ function Contact() {
           to_email: "archit499kul@gmail.com",
           message: data.message,
         },
-        "s9ONT6lFbL_3bS2Vl"
-      )
-      .then(() => {
-        alert("Message sent successfully");
-        setLoading(false);
-
-        reset();
-      })
-      .catch(() => {
-        alert("Message failed to send");
-        setLoading(false);
-      });
+        "s9ONT6lFbL_3bS2Vl",
+      );
+      setStatus("sent");
+      reset();
+    } catch {
+      setStatus("error");
+    }
   };
 
-  return (
-    <>
-      <section className="  pt-16 min-h-screen w-full px-4 md:px-28 ">
-        <div data-aos="fade-left" className="max-w-3xl mx-auto">
-          <div className="bg-gradient-to-tl from-secondary-800 to-secondary-950 border border-primary-200/10 backdrop-filter mt-6 backdrop-blur-lg p-6 rounded-lg shadow-lg">
-            <h1 className="text-3xl md:text-4xl font-bold text-center mb-4 text-secondary-200 font-heading mt-4">
-              Contact Us
-            </h1>
-            <p className="text-base md:text-lg text-center mb-8 text-text-100">
-              We are here to help and answer any questions you might have. We
-              look forward to hearing from you.
-            </p>
+  const sending = status === "sending";
 
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-              <div>
-                <input
-                  type="text"
-                  name="name"
-                  placeholder="Name"
-                  className="w-full p-4 bg-text-100 border border-primary-200/30 placeholder:text-text-500 text-text-800 rounded-md focus:outline-none focus:border-accent-400 focus:ring-1 focus:ring-accent-400"
-                  {...register("name", { required: true })}
-                  required
-                />
-              </div>
-              <div>
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="Email"
-                  className="w-full p-4 bg-text-100 border border-primary-200/30 placeholder:text-text-500 text-text-800 rounded-md focus:outline-none focus:border-accent-400 focus:ring-1 focus:ring-accent-400"
-                  required
-                  {...register("email", { required: true })}
-                />
-              </div>
-              <div>
-                <textarea
-                  name="message"
-                  placeholder="Message"
-                  rows="4"
-                  className="w-full p-4 bg-text-100 border border-primary-200/30 placeholder:text-text-500 text-text-800 rounded-md focus:outline-none focus:border-accent-400 focus:ring-1 focus:ring-accent-400 resize-none"
-                  {...register("message", { required: true })}
-                  required></textarea>
-              </div>
-              <div>
-                <button
-                  aria-label="send"
-                  type="submit"
-                  className="w-full py-3 bg-accent-400 hover:bg-accent-300 text-background-950 font-bold rounded-md transition duration-300 disabled:opacity-60"
-                  disabled={loading}>
-                  {loading ? "Sending..." : "Send"}
-                </button>
-              </div>
-            </form>
-          </div>
+  return (
+    <section className="min-h-screen w-full px-4 pb-16 pt-[75px] md:px-28">
+      <SectionHeading as="h1" className="mt-10">
+        Contact Us
+      </SectionHeading>
+
+      <div className="mt-10 grid gap-10 lg:grid-cols-[1fr_1.5fr] lg:gap-16">
+        {/* Intro */}
+        <div data-aos="fade-up">
+          <p className="max-w-md text-base leading-relaxed text-text-100 md:text-lg">
+            We are here to help and answer any questions you might have. We look
+            forward to hearing from you.
+          </p>
+          <p className="mt-6 text-text-300">
+            Prefer email? Write to{" "}
+            <Link
+              href="mailto:ches@svnit.ac.in"
+              className="rounded text-text-100 underline decoration-primary-200/30 underline-offset-4 transition-colors hover:text-accent-300 hover:decoration-accent-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-400"
+            >
+              ches@svnit.ac.in
+            </Link>
+          </p>
         </div>
-      </section>
-    </>
+
+        {/* Form */}
+        <div
+          data-aos="fade-up"
+          data-aos-delay="80"
+          className="rounded-2xl border border-primary-200/10 bg-secondary-900/70 p-5 md:p-8"
+        >
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            noValidate
+            className="space-y-5"
+          >
+            <Field id="name" label="Name" error={errors.name?.message}>
+              <input
+                id="name"
+                type="text"
+                autoComplete="name"
+                placeholder="Your name"
+                aria-invalid={errors.name ? "true" : "false"}
+                aria-describedby={errors.name ? "name-error" : undefined}
+                className={fieldClass}
+                {...register("name", { required: "Please enter your name." })}
+              />
+            </Field>
+
+            <Field id="email" label="Email" error={errors.email?.message}>
+              <input
+                id="email"
+                type="email"
+                autoComplete="email"
+                placeholder="you@example.com"
+                aria-invalid={errors.email ? "true" : "false"}
+                aria-describedby={errors.email ? "email-error" : undefined}
+                className={fieldClass}
+                {...register("email", {
+                  required: "Please enter your email.",
+                  pattern: {
+                    value: /^\S+@\S+\.\S+$/,
+                    message: "That email doesn't look right.",
+                  },
+                })}
+              />
+            </Field>
+
+            <Field id="message" label="Message" error={errors.message?.message}>
+              <textarea
+                id="message"
+                rows={5}
+                placeholder="How can we help?"
+                aria-invalid={errors.message ? "true" : "false"}
+                aria-describedby={errors.message ? "message-error" : undefined}
+                className={`${fieldClass} resize-none`}
+                {...register("message", {
+                  required: "Please write a message.",
+                })}
+              />
+            </Field>
+
+            <button
+              type="submit"
+              disabled={sending}
+              aria-busy={sending}
+              className="w-full rounded-full bg-accent-400 px-7 py-3 font-semibold text-background-950 transition-colors duration-200 hover:bg-accent-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-300 disabled:cursor-not-allowed disabled:opacity-60"
+            >
+              {sending ? "Sending…" : "Send message"}
+            </button>
+
+            {/* Announced to screen readers when it changes */}
+            <div role="status" aria-live="polite" className="min-h-[1.5rem]">
+              {status === "sent" && (
+                <p className="text-sm text-accent-300">
+                  Message sent. We'll get back to you soon.
+                </p>
+              )}
+              {status === "error" && (
+                <p className="text-sm text-red-300">
+                  Your message didn't send. Please try again, or email
+                  ches@svnit.ac.in.
+                </p>
+              )}
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
   );
 }
 

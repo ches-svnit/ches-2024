@@ -1,13 +1,6 @@
 "use client";
-import {
-  Button,
-  Dialog,
-  DialogBody,
-  DialogFooter,
-  DialogHeader,
-} from "@/components/Provider";
+import { Button, Dialog, DialogFooter } from "@/components/Provider";
 import { useState } from "react";
-
 import Image from "next/image";
 import Link from "next/link";
 
@@ -15,73 +8,87 @@ export function EventCard({
   description,
   InnerImage,
   CoverImage,
-  index,
+  index = 0,
   link,
 }) {
   const [open, setOpen] = useState(false);
 
-  const handleOpen = () => setOpen(!open);
+  const handleOpen = () => setOpen((o) => !o);
 
   return (
     <>
-      <div
-        data-aos-delay={index * 10}
-        data-aos="fade-right"
-        onClick={handleOpen}
-        className="bg-gradient-to-tl from-secondary-800 to-secondary-950 border border-primary-200/10 backdrop-filter rounded-xl cursor-pointer p-6 sm:px-6 hover:shadow-lg hover:shadow-accent-400/20 transition-shadow w-full"
-      >
-        <Image
-          height={200}
-          width={300}
-          className=" rounded-xl  object-cover w-full "
-          src={CoverImage}
-          alt="titleImage"
-        />
+      {/* AOS on the wrapper so it doesn't fight the button's own transitions */}
+      <div data-aos="fade-up" data-aos-delay={(index % 3) * 80}>
+        <button
+          type="button"
+          onClick={handleOpen}
+          aria-haspopup="dialog"
+          aria-label="View event details"
+          className="block w-full rounded-2xl border border-primary-200/10 bg-secondary-900/70 p-3 text-left transition-colors duration-300 hover:border-accent-400/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-400"
+        >
+          <Image
+            width={600}
+            height={400}
+            sizes="(min-width: 1024px) 30vw, (min-width: 768px) 45vw, 100vw"
+            className="h-auto w-full rounded-xl object-cover"
+            src={CoverImage}
+            alt="Event poster"
+          />
+        </button>
       </div>
 
       <Dialog
         open={open}
         handler={handleOpen}
         size="lg"
-        className="bg-gradient-to-tl from-secondary-800 to-secondary-950 border border-primary-200/10 backdrop-filter rounded-lg shadow-lg h-[90dvh] md:h-auto overflow-y-scroll md:overflow-hidden"
+        className="max-h-[90dvh] overflow-y-auto rounded-2xl border border-primary-200/10 bg-secondary-900 shadow-2xl shadow-black/40"
         animate={{
-          mount: { scale: 1, y: 0 },
-          unmount: { scale: 0.9, y: -100 },
+          mount: {
+            opacity: 1,
+            scale: 1,
+            y: 0,
+            transition: { duration: 0.25, ease: "easeOut" },
+          },
+          unmount: {
+            opacity: 0,
+            scale: 0.97,
+            y: 12,
+            transition: { duration: 0.2, ease: "easeIn" },
+          },
         }}
       >
-        <div className="p-4 md:p-8 ">
-          <div>
-            <Image
-              src={InnerImage}
-              alt="Event Image"
-              height={200}
-              width={200}
-              className="rounded-lg w-full md:w-80 aspect-[1/1] object-contain md:float-left float-none mb-2 mr-4"
-            />
-          </div>
-          <div className="">
-            <h3 className="text-base md:text-xl text-text-200 text-justify">
-              {description}
-            </h3>
-          </div>
+        <div className="p-5 md:flex md:gap-8 md:p-8">
+          <Image
+            src={InnerImage}
+            alt="Event poster, full size"
+            width={400}
+            height={400}
+            sizes="(min-width: 768px) 20rem, 100vw"
+            className="aspect-square w-full flex-none rounded-xl bg-secondary-950/60 object-contain md:w-80"
+          />
+          <p className="mt-5 text-base leading-relaxed text-text-100 md:mt-0 md:text-lg">
+            {description}
+          </p>
         </div>
-        <DialogFooter>
+        <DialogFooter className="gap-2">
           <Button
-            aria-label="close"
+            aria-label="Close"
             variant="text"
             color="white"
-            onClick={() => handleOpen(null)}
-            className="mr-2"
+            onClick={() => setOpen(false)}
           >
             <span>Close</span>
           </Button>
-          <Link
-            href={link}
-            target="_blank"
-            className="bg-accent-400 hover:bg-accent-300 text-background-950 font-medium p-2 rounded-md transition-colors"
-          >
-            Know More
-          </Link>
+          {link && (
+            <Link
+              href={link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-full bg-accent-400 px-5 py-2.5 font-medium text-background-950 transition-colors hover:bg-accent-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-300"
+            >
+              Know more
+            </Link>
+          )}
         </DialogFooter>
       </Dialog>
     </>

@@ -1,30 +1,30 @@
 import Image from "next/image";
+import SectionHeading from "@/components/SectionHeading";
 import { getGallery } from "@/sanity/utilsSanity";
 
 async function Gallery() {
   const Images = await getGallery();
 
   return (
-    <section className=" mb-16 w-full px-4 md:px-28">
-      <h2 className="md:text-4xl text-3xl font-bold font-heading text-secondary-200 mt-4 decoration-4  decoration-accent-500 underline underline-offset-8">
-        Gallery
-      </h2>
+    <section className="w-full px-4 py-8 md:px-28 md:py-12">
+      <SectionHeading>Gallery</SectionHeading>
 
-      <div className="grid grid-cols-1 gap-4 md:gap-6 sm:grid-cols-3 mt-8">
+      <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 md:mt-14 md:gap-6 lg:grid-cols-3">
         {Images.map(({ ImageUrl }, index) => (
           <div
-            data-aos="fade-left"
-            data-aos-delay={index * 100 + 10}
             key={index}
-            className="hover:scale-110 ease-in-out duration-300 relative overflow-hidden rounded-lg   cursor-pointer "
+            data-aos="fade-up"
+            data-aos-delay={(index % 3) * 80}
+            className="group overflow-hidden rounded-xl"
           >
             <Image
-              quality={90}
-              height={200}
-              width={200}
-              className="hover:scale-110 ease-in-out duration-300 w-full aspect-[3/2] max-w-full rounded-lg object-cover object-center "
+              quality={85}
+              width={600}
+              height={400}
+              sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+              className="aspect-[3/2] w-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
               src={ImageUrl}
-              alt="gallery-photo"
+              alt={`Gallery photo ${index + 1}`}
             />
           </div>
         ))}
@@ -32,4 +32,5 @@ async function Gallery() {
     </section>
   );
 }
+
 export default Gallery;

@@ -1,76 +1,66 @@
 "use client";
 import { Carousel, IconButton } from "./Provider";
-import Image from "next/image";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import CarouselCard from "./CarouselCard";
+
+// Same outlined-circle control as the announcements carousel, on a dark backing so it stays readable over content
+const arrowBtn =
+  "!absolute !bottom-4 z-50 !h-10 !w-10 !rounded-full border border-primary-200/20 !bg-secondary-950/70 text-accent-400 backdrop-blur-md transition-colors hover:border-accent-400 hover:!bg-secondary-950/70 focus-visible:ring-2 focus-visible:ring-accent-400";
+
 const AboutCarousel = ({ about }) => {
   return (
     <Carousel
       autoplay={false}
       loop={true}
-      className="rounded-xl "
+      transition={{ type: "tween", duration: 0.7, ease: "easeInOut" }}
+      className="rounded-xl"
       navigation={({ setActiveIndex, activeIndex, length }) => (
-        <div className="absolute bottom-0 left-2/4 z-50 flex -translate-x-2/4 gap-2">
+        <div className="absolute bottom-4 left-1/2 z-50 flex h-10 -translate-x-1/2 items-center gap-1 rounded-full bg-secondary-950/70 px-3 backdrop-blur-md">
           {new Array(length).fill("").map((_, i) => (
-            <span
+            <button
               key={i}
-              className={`block h-2 cursor-pointer rounded-2xl transition-all content-[''] ${
-                activeIndex === i
-                  ? "w-8  bg-accent-500"
-                  : "w-4 bg-accent-300/40"
-              }`}
+              type="button"
+              aria-label={`Go to slide ${i + 1}`}
+              aria-current={activeIndex === i ? "true" : undefined}
               onClick={() => setActiveIndex(i)}
-            />
+              className="rounded-full p-1.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-400"
+            >
+              <span
+                className={`block h-1.5 rounded-full transition-all duration-300 ${
+                  activeIndex === i
+                    ? "w-8 bg-accent-400"
+                    : "w-1.5 bg-primary-200/40"
+                }`}
+              />
+            </button>
           ))}
         </div>
       )}
       prevArrow={({ handlePrev }) => (
         <IconButton
-          aria-label="left"
+          aria-label="Previous slide"
           variant="text"
           color="white"
-          size="lg"
           onClick={handlePrev}
-          className="!absolute bottom-0 left-4 -translate-y-2/4 ">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={2}
-            stroke="currentColor"
-            className="h-8 w-8 text-accent-400">
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
-            />
-          </svg>
+          className={`${arrowBtn} !left-4`}
+        >
+          <FaChevronLeft className="text-sm" />
         </IconButton>
       )}
       nextArrow={({ handleNext }) => (
         <IconButton
-          aria-label="right"
+          aria-label="Next slide"
           variant="text"
           color="white"
-          size="lg"
           onClick={handleNext}
-          className="!absolute bottom-0 !right-4 -translate-y-2/4  ">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={2}
-            stroke="currentColor"
-            className="h-8 w-8 text-accent-400">
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
-            />
-          </svg>
+          className={`${arrowBtn} !right-4`}
+        >
+          <FaChevronRight className="text-sm" />
         </IconButton>
-      )}>
-      {about.map((about) => (
-        <CarouselCard key={about.title} {...about} />
+      )}
+    >
+      {about.map((item) => (
+        <CarouselCard key={item.title} {...item} />
       ))}
     </Carousel>
   );
